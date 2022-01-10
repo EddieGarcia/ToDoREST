@@ -2,8 +2,8 @@ using ToDoREST;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddNHibernate();
+var connectionString = builder.Configuration.GetConnectionString("DefaultSmarterASPDB");
+builder.Services.AddNHibernate(connectionString);
 
 // Add services to the container.
 builder.Services.AddControllers();

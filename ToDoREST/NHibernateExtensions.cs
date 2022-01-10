@@ -8,7 +8,7 @@ namespace ToDoREST
 {
     public static class NHibernateExtensions
     {
-        public static IServiceCollection AddNHibernate(this IServiceCollection services)
+        public static IServiceCollection AddNHibernate(this IServiceCollection services, string connectionString)
         {
             var mapper = new ModelMapper();
             mapper.AddMappings(typeof(NHibernateExtensions).Assembly.ExportedTypes);
@@ -18,7 +18,7 @@ namespace ToDoREST
             configuration.DataBaseIntegration(c =>
             {
                 c.Dialect<MsSql2012Dialect>();
-                c.ConnectionString = "Data Source=SQL5109.site4now.net;Initial Catalog=db_a7eef1_todoapp;User Id=db_a7eef1_todoapp_admin;Password=PWD";
+                c.ConnectionString = connectionString;
                 c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
                 c.SchemaAction = SchemaAutoAction.Validate;
                 c.LogFormattedSql = true;
